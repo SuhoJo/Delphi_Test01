@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8AE6597D-00D2-4B58-808E-2DA4CC562678}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Svc_check.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="PReceive_Win_message.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Svc_check">
+        <MSBuild Projects="Svc_check.dproj"/>
+    </Target>
+    <Target Name="Svc_check:Clean">
+        <MSBuild Projects="Svc_check.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Svc_check:Make">
+        <MSBuild Projects="Svc_check.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PReceive_Win_message">
+        <MSBuild Projects="PReceive_Win_message.dproj"/>
+    </Target>
+    <Target Name="PReceive_Win_message:Clean">
+        <MSBuild Projects="PReceive_Win_message.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PReceive_Win_message:Make">
+        <MSBuild Projects="PReceive_Win_message.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Svc_check;PReceive_Win_message"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Svc_check:Clean;PReceive_Win_message:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Svc_check:Make;PReceive_Win_message:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
